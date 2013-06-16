@@ -2,7 +2,7 @@
 # Contributor: Kilian Lackhove kilian@lackhove.de
 pkgname=bittorrent-sync
 pkgver=1.1.15
-pkgrel=2
+pkgrel=3
 epoch=1
 pkgdesc="BitTorrent Sync"
 arch=('i686' 'x86_64' 'arm' 'armv6h')
