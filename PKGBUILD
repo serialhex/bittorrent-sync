@@ -1,10 +1,12 @@
 # Maintainer: Dalton Miller
 # Contributor: Kilian Lackhove kilian@lackhove.de
+# Contributor: Emil Lundberg <lundberg.emil@gmail.com>
+
 pkgname=bittorrent-sync
 pkgver=1.1.27
 pkgrel=1
 epoch=1
-pkgdesc="BitTorrent Sync"
+pkgdesc="BitTorrent Sync - automatically sync files via secure, distributed technology"
 arch=('i686' 'x86_64' 'arm' 'armv6h')
 url="http://labs.bittorrent.com/experiments/sync.html"
 license=('custom')
