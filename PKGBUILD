@@ -36,7 +36,7 @@ fi
 
 build() {
 	cd "${srcdir}"
-	./btsync --dump-sample-config > btsync.conf
+	./btsync --dump-sample-config | sed 's:/home/user/\.sync:/var/lib/btsync:g' > btsync.conf
 }
 
 package() {
@@ -46,7 +46,6 @@ package() {
         install -D -m 644 terms-of-use.html "${pkgdir}/usr/share/licenses/${pkgname}/terms-of-use.html"
         install -D -m 644 privacy-policy.html "${pkgdir}/usr/share/licenses/${pkgname}/privacy-policy.html"
 
-	./btsync --dump-sample-config | sed 's:/home/user/\.sync:/var/lib/btsync:g' > btsync.conf
 	install -D -m 644 btsync.conf "${pkgdir}/etc/btsync.conf"
 
 	install -D -m 755 btsync "${pkgdir}/usr/bin/btsync"
