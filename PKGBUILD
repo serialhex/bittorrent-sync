@@ -9,13 +9,19 @@ epoch=1
 pkgdesc="BitTorrent Sync - automatically sync files via secure, distributed technology"
 arch=('i686' 'x86_64' 'arm' 'armv6h')
 url="http://labs.bittorrent.com/experiments/sync.html"
-license=('custom')
+license=('custom:bittorrent')
 backup=("etc/btsync.conf")
 install="${pkgname}.install"
 source=("bittorrent-sync.install"
-	"btsync.service")
+	"btsync.service"
+	"terms-of-use.html::http://www.bittorrent.com/legal/terms-of-use"
+	"privacy-policy.html::http://www.bittorrent.com/legal/privacy"
+	)
 sha256sums=('b2240a8356c24356ca83bc2f9dcf759ceaa7dcdbbec45f5cc8cd0928b8f89df5'
-	    '3ccf1a7e3f066bf4453035cbb5b4956b6d69d6abd4c41f34ed36b84f345ae90f')
+	    '3ccf1a7e3f066bf4453035cbb5b4956b6d69d6abd4c41f34ed36b84f345ae90f'
+	    'SKIP'
+	    'SKIP'
+	    )
 
 if [ "$CARCH" == x86_64 ]; then
 	source+=("http://syncapp.bittorrent.com/$pkgver/btsync_x64-$pkgver.tar.gz")
@@ -36,12 +42,14 @@ build() {
 package() {
 	cd "${srcdir}"
 
+        install -D -m 644 LICENSE.TXT "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE.TXT"
+        install -D -m 644 terms-of-use.html "${pkgdir}/usr/share/licenses/${pkgname}/terms-of-use.html"
+        install -D -m 644 privacy-policy.html "${pkgdir}/usr/share/licenses/${pkgname}/privacy-policy.html"
+
 	./btsync --dump-sample-config | sed 's:/home/user/\.sync:/var/lib/btsync:g' > btsync.conf
 	install -D -m 644 btsync.conf "${pkgdir}/etc/btsync.conf"
 
 	install -D -m 755 btsync "${pkgdir}/usr/bin/btsync"
 
 	install -D -m 644 btsync.service "${pkgdir}/usr/lib/systemd/system/btsync.service"
-
-	install -D -m 644 LICENSE.TXT "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE.TXT"
 }
