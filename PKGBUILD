@@ -1,4 +1,7 @@
-# Maintainer: Dalton Miller
+# Maintainer: Justin Patera serialhex@gmail.com
+# Contrib Repo: https://github.com/serialhex/bittorrent-sync
+#
+# Contributor: Dalton Miller
 # Contributor: Kilian Lackhove kilian@lackhove.de
 pkgname=bittorrent-sync
 pkgver=1.1.27
