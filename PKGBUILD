@@ -12,7 +12,7 @@ url="http://labs.bittorrent.com/experiments/sync.html"
 license=('custom:bittorrent')
 backup=("etc/btsync.conf")
 install="${pkgname}.install"
-source=("bittorrent-sync.install"
+source=("${pkgname}.install"
 	"btsync.service"
 	"terms-of-use.html::http://www.bittorrent.com/legal/terms-of-use"
 	"privacy-policy.html::http://www.bittorrent.com/legal/privacy"
