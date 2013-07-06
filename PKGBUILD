@@ -13,10 +13,12 @@ install="${pkgname}.install"
 source=("bittorrent-sync.install"
 	"btsync.service"
 	"btsync@.service"
+	"btsync-makeconfig.sh"
 	)
 sha256sums=('0c642991865ab2f280ee00906ce50442dd13b62362637b53f88fa552e7f11a46'
 	    '4725df55f29378a2fd1b194364c5927977c96b4ce622906d0d7cf80ae9493a9d'
 	    'c0b637fb8d3f8b8a35a81683b3540b3155da1ceba83783a60723c832d1d4162e'
+	    'b4e6b2d12310c1f45c6dcc26d99b2c74d87b8709ba057d833cdbd5906742e58f'
 	    )
 
 if [ "$CARCH" == x86_64 ]; then
@@ -40,6 +42,7 @@ package() {
 
 	./btsync --dump-sample-config | sed 's:/home/user/\.sync:/var/lib/btsync:g' > btsync.conf
 	install -D -m 644 btsync.conf "${pkgdir}/etc/btsync.conf"
+	install -D -m 644 btsync-makeconfig.sh "${pkgdir}/usr/share/${pkgname}/btsync-makeconfig.sh"
 
 	install -D -m 755 btsync "${pkgdir}/usr/bin/btsync"
 
