@@ -15,4 +15,5 @@ post_upgrade() {
 
 post_remove() {
   userdel btsync
+  echo -e "Please remove the /var/lib/btsync folder manually."
 }
