@@ -14,11 +14,13 @@ backup=("etc/btsync.conf")
 install="${pkgname}.install"
 source=("${pkgname}.install"
 	"btsync.service"
+	"btsync@.service"
 	"terms-of-use.html::http://www.bittorrent.com/legal/terms-of-use"
 	"privacy-policy.html::http://www.bittorrent.com/legal/privacy"
 	)
-sha256sums=('15049375ece90f755c6e6f04cf1016ab4109b4a996e0ab2d041c50fee5c34780'
-	    '3ccf1a7e3f066bf4453035cbb5b4956b6d69d6abd4c41f34ed36b84f345ae90f'
+sha256sums=('d6c32741f6c0cda1ae14be23c2121056c0aa56c1a0466346176ef7aaa9800eb2'
+	    '4725df55f29378a2fd1b194364c5927977c96b4ce622906d0d7cf80ae9493a9d'
+	    'c0b637fb8d3f8b8a35a81683b3540b3155da1ceba83783a60723c832d1d4162e'
 	    'SKIP'
 	    'SKIP'
 	    )
@@ -51,4 +53,6 @@ package() {
 	install -D -m 755 btsync "${pkgdir}/usr/bin/btsync"
 
 	install -D -m 644 btsync.service "${pkgdir}/usr/lib/systemd/system/btsync.service"
+	install -D -m 644 btsync@.service "${pkgdir}/usr/lib/systemd/system/btsync@.service"
+
 }
