@@ -15,12 +15,14 @@ install="${pkgname}.install"
 source=("${pkgname}.install"
 	"btsync.service"
 	"btsync@.service"
+	"btsync-makeconfig.sh"
 	"terms-of-use.html::http://www.bittorrent.com/legal/terms-of-use"
 	"privacy-policy.html::http://www.bittorrent.com/legal/privacy"
 	)
-sha256sums=('d6c32741f6c0cda1ae14be23c2121056c0aa56c1a0466346176ef7aaa9800eb2'
+sha256sums=('8dffbb68c14a95720125dde4ce508191dd2a3f2d1eeef51236402660051812f9'
 	    '4725df55f29378a2fd1b194364c5927977c96b4ce622906d0d7cf80ae9493a9d'
 	    'c0b637fb8d3f8b8a35a81683b3540b3155da1ceba83783a60723c832d1d4162e'
+	    '866904a3a2885890d213a9c2cbe2cdf9f36e6cb2ea9fdf4205f0555570a98e2a'
 	    'SKIP'
 	    'SKIP'
 	    )
@@ -49,6 +51,7 @@ package() {
         install -D -m 644 privacy-policy.html "${pkgdir}/usr/share/licenses/${pkgname}/privacy-policy.html"
 
 	install -D -m 644 btsync.conf "${pkgdir}/etc/btsync.conf"
+	install -D -m 644 btsync-makeconfig.sh "${pkgdir}/usr/share/${pkgname}/btsync-makeconfig.sh"
 
 	install -D -m 755 btsync "${pkgdir}/usr/bin/btsync"
 

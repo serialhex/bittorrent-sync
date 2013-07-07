@@ -19,6 +19,12 @@ cat << EOF
   mkdir -p ~/.config/btsync
   cp /etc/btsync.conf ~/.config/btsync/btsync.conf
 
+  Alternatively, you can run the btsync-makeconfig script that guesses some
+  default values such as device name and login name:
+
+  mkdir -p ~/.config/btsync
+  source /usr/share/bittorrent-sync/btsync-makeconfig.sh > ~/.config/btsync/btsync.conf
+
   Replace user-specific references with the appropriate information,
   particularly the following settings:
 
