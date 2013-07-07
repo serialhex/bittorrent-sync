@@ -1,6 +1,6 @@
 post_install() {
     if [ "$(grep btsync /etc/passwd)" == "" ]; then
-        useradd -r -s /bin/sh -d /var/lib/btsync btsync
+        useradd -M -r -U -s /bin/sh -d /var/lib/btsync btsync
     fi
     mkdir -p /var/lib/btsync && chown -R btsync:btsync /var/lib/btsync
 
@@ -15,4 +15,5 @@ post_upgrade() {
 
 post_remove() {
   userdel btsync
+  echo -e "Please remove the /var/lib/btsync folder manually."
 }
