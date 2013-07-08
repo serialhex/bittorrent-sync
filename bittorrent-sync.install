@@ -43,6 +43,12 @@ cat << EOF
 
   where 'user' is your username.
 
+  ================
+
+  Note that you may need to run
+  # systemctl --system daemon-reload
+  before systemd recognizes the new service definitions.
+
 EOF
 
 }
