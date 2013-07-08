@@ -14,9 +14,13 @@ license=('custom')
 backup=("etc/btsync.conf")
 install="${pkgname}.install"
 source=("bittorrent-sync.install"
-	"btsync.service")
-sha256sums=('b2240a8356c24356ca83bc2f9dcf759ceaa7dcdbbec45f5cc8cd0928b8f89df5'
-	    '3ccf1a7e3f066bf4453035cbb5b4956b6d69d6abd4c41f34ed36b84f345ae90f')
+	"btsync.service"
+	"btsync@.service"
+	)
+sha256sums=('0c642991865ab2f280ee00906ce50442dd13b62362637b53f88fa552e7f11a46'
+	    '4725df55f29378a2fd1b194364c5927977c96b4ce622906d0d7cf80ae9493a9d'
+	    'c0b637fb8d3f8b8a35a81683b3540b3155da1ceba83783a60723c832d1d4162e'
+	    )
 
 if [ "$CARCH" == x86_64 ]; then
 	source+=("http://syncapp.bittorrent.com/$pkgver/btsync_x64-$pkgver.tar.gz")
@@ -43,6 +47,8 @@ package() {
 	install -D -m 755 btsync "${pkgdir}/usr/bin/btsync"
 
 	install -D -m 644 btsync.service "${pkgdir}/usr/lib/systemd/system/btsync.service"
+	install -D -m 644 btsync@.service "${pkgdir}/usr/lib/systemd/system/btsync@.service"
 
 	install -D -m 644 LICENSE.TXT "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE.TXT"
+
 }
