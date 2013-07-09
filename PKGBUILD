@@ -21,10 +21,10 @@ source=("${pkgname}.install"
 	"terms-of-use.html::http://www.bittorrent.com/legal/terms-of-use"
 	"privacy-policy.html::http://www.bittorrent.com/legal/privacy"
 	)
-sha256sums=('eda7950e6ad5f5c124a370c66827fc27f54eb08b9a57f57ff92a4eed743994ed'
+sha256sums=('64a32da4bb6c7b88b556010b024fd11f13641106ed936488f825bace00a26db2'
 	    '4725df55f29378a2fd1b194364c5927977c96b4ce622906d0d7cf80ae9493a9d'
 	    'c0b637fb8d3f8b8a35a81683b3540b3155da1ceba83783a60723c832d1d4162e'
-	    '866904a3a2885890d213a9c2cbe2cdf9f36e6cb2ea9fdf4205f0555570a98e2a'
+	    '801494ebeaf6839356f39d7f10a68128baf5c5bb00a6997ebdda6ff840b09bbf'
 	    'SKIP'
 	    'SKIP'
 	    )
@@ -42,7 +42,7 @@ fi
 
 build() {
 	cd "${srcdir}"
-	./btsync --dump-sample-config | sed 's:/home/user/\.sync:/var/lib/btsync:g' > btsync.conf
+	./btsync-makeconfig.sh --storage-path /var/lib/btsync --login admin --device-name $HOSTNAME > btsync.conf
 }
 
 package() {
@@ -53,7 +53,7 @@ package() {
         install -D -m 644 privacy-policy.html "${pkgdir}/usr/share/licenses/${pkgname}/privacy-policy.html"
 
 	install -D -m 644 btsync.conf "${pkgdir}/etc/btsync.conf"
-	install -D -m 644 btsync-makeconfig.sh "${pkgdir}/usr/share/${pkgname}/btsync-makeconfig.sh"
+	install -D -m 755 btsync-makeconfig.sh "${pkgdir}/usr/share/${pkgname}/btsync-makeconfig.sh"
 
 	install -D -m 755 btsync "${pkgdir}/usr/bin/btsync"
 
