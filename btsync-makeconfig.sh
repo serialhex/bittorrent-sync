@@ -29,13 +29,71 @@ for arg in $@; do
 		--pass|--password)
 			password=$arg;;
 	esac
+	case $arg in -h|--help)
+cat<<EOF
+Usage: source btsync-makeconfig.sh [-h|--help] | ([OPTION OPTION_VALUE]...)
+    -h, --help
+        Print this message and exit.
+
+OPTIONS
+  These options are accepted, with defaults in parentheses. If an option
+  appears more than once, the last occurrence overwrites all previous
+  ones.
+
+    --device-name, --hostname (\$HOSTNAME)
+        The name of this device to show in other connected clients.
+
+    --port (0)
+        The port on which to listen for BitTorrent Sync connections. 0
+        means randomize port.
+
+    --storage-path (~/.config/btsync)
+        The directory to store config files and metadata, such as folder
+        keys and indices, in. If you change this, you will need to
+        modify the PIDFile entry in
+        /usr/lib/systemd/system/btsync@.service to point to the sync.pid
+        file in this directory.
+
+    --check-for-updates (true)
+        Whether to check for updates from upstream If set to true, a
+        notification will be shown in WebGUI when a newer version is
+        available. Please be patient with the package maintainer. :)
+
+    --upnp (true)
+        Whether to use UPnP for port mapping
+
+    --downlimit (0)
+        Limit in kB/s on download speed. 0 means no limit.
+
+    --uplimit (0)
+        Limit in kB/s on upload speed. 0 means no limit.
+
+    --webport (8888)
+        The port on which the WebGUI will be available.
+
+    --login (\$USER)
+        The login name to use for WebGUI. You can disable authentication
+        in WebGUI by manually commenting out the "login" and "password"
+        rows.
+
+    --pass, --password (password)
+        The password to use for WebGUI. You can disable authentication
+        in WebGUI by manually commenting out the "login" and "password"
+        rows.
+
+EOF
+		# Exit if script is sourced
+		return 0 2>/dev/null
+		# Exit if script is executed
+		exit 0
+	esac
 	previous=$arg
 done
 
 ##############################
 # DEFAULTS
 ##############################
-devicename=${devicename:-$(hostname)}
+devicename=${devicename:-$HOSTNAME}
 port=${port:-0}
 storagepath=${storagepath:-$HOME/.config/btsync}
 checkupdates=${checkupdates:-true}
