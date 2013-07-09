@@ -53,7 +53,7 @@ package() {
         install -D -m 644 privacy-policy.html "${pkgdir}/usr/share/licenses/${pkgname}/privacy-policy.html"
 
 	install -D -m 644 btsync.conf "${pkgdir}/etc/btsync.conf"
-	install -D -m 644 btsync-makeconfig.sh "${pkgdir}/usr/share/${pkgname}/btsync-makeconfig.sh"
+	install -D -m 755 btsync-makeconfig.sh "${pkgdir}/usr/share/${pkgname}/btsync-makeconfig.sh"
 
 	install -D -m 755 btsync "${pkgdir}/usr/bin/btsync"
 

@@ -3,6 +3,12 @@
 # Generate a default BitTorrent Sync config file for the current user.
 # The config file is written to standard out.
 
+if [[ $0 == '/bin/bash' ]]; then
+	echo "It looks like you're sourcing this script."
+	echo "Please execute it directly instead, lest it clutter your shell with variables."
+	return 1
+fi
+
 ##############################
 # READ INPUT
 ##############################
@@ -82,9 +88,6 @@ OPTIONS
         rows.
 
 EOF
-		# Exit if script is sourced
-		return 0 2>/dev/null
-		# Exit if script is executed
 		exit 0
 	esac
 	previous=$arg

@@ -16,7 +16,7 @@ cat << EOF
   with btsync. Run the btsync-makeconfig script to generate a config file:
 
   $ mkdir -p ~/.config/btsync
-  $ source /usr/share/bittorrent-sync/btsync-makeconfig.sh > ~/.config/btsync/btsync.conf
+  $ /usr/share/bittorrent-sync/btsync-makeconfig.sh > ~/.config/btsync/btsync.conf
 
   This script accepts some optional parameters, see btsync-makeconfig.sh --help.
   It leaves most things at default and attempts to guess suitable values for
