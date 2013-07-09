@@ -40,7 +40,7 @@ OPTIONS
   appears more than once, the last occurrence overwrites all previous
   ones.
 
-    --device-name, --hostname (\$HOSTNAME)
+    --device-name, --hostname (\$USER@\$HOSTNAME)
         The name of this device to show in other connected clients.
 
     --port (0)
@@ -93,7 +93,7 @@ done
 ##############################
 # DEFAULTS
 ##############################
-devicename=${devicename:-$HOSTNAME}
+devicename=${devicename:-$USER@$HOSTNAME}
 port=${port:-0}
 storagepath=${storagepath:-$HOME/.config/btsync}
 checkupdates=${checkupdates:-true}
