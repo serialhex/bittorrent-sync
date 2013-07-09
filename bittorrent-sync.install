@@ -13,24 +13,20 @@ cat << EOF
   User-specific BTSync configuration
 
   Helps to set ownership to someone other than root for files that are copied
-  with btsync. Copy /etc/btsync.conf to ~/.config/btsync/btsync.conf for
-  the user you wish to configure btsync as:
+  with btsync. Run the btsync-makeconfig script to generate a config file:
 
-  mkdir -p ~/.config/btsync
-  cp /etc/btsync.conf ~/.config/btsync/btsync.conf
+  $ mkdir -p ~/.config/btsync
+  $ /usr/share/bittorrent-sync/btsync-makeconfig.sh > ~/.config/btsync/btsync.conf
 
-  Alternatively, you can run the btsync-makeconfig script that guesses some
-  default values such as device name and login name:
+  This script accepts some optional parameters, see btsync-makeconfig.sh --help.
+  It leaves most things at default and attempts to guess suitable values for
+  login name and device name.
 
-  mkdir -p ~/.config/btsync
-  source /usr/share/bittorrent-sync/btsync-makeconfig.sh > ~/.config/btsync/btsync.conf
+  You may want to set these settings in particular (corresponding script option):
 
-  Replace user-specific references with the appropriate information,
-  particularly the following settings:
-
-  - webui.listen
-  - webui.login
-  - webui.password
+  - webui.listen   (--webport)
+  - webui.login    (--login)
+  - webui.password (--pass|--password)
 
   The systemd script (/usr/lib/systemd/system/btsync@.service) assumes the
   following two settings:
@@ -39,9 +35,15 @@ cat << EOF
 
   To start btsync, execute:
 
-  systemctl start btsync@user
+  $ systemctl start btsync@user
 
   where 'user' is your username.
+
+  ================
+
+  Note that you may need to run
+  # systemctl --system daemon-reload
+  before systemd recognizes the new service definitions.
 
 EOF
 
