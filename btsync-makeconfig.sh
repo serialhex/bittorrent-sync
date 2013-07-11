@@ -86,6 +86,8 @@ OPTIONS
         The password to use for WebGUI. You can disable authentication
         in WebGUI by manually commenting out the "login" and "password"
         rows.
+          WARNING: THE PASSWORD WILL BE PRESERVED IN CLEARTEXT IN THE
+          GENERATED CONFIG FILE.
 
 EOF
 		exit 0
