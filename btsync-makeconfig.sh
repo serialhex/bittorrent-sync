@@ -37,7 +37,7 @@ for arg in $@; do
 	esac
 	case $arg in -h|--help)
 		cat<<EOF
-Usage: source btsync-makeconfig.sh [-h|--help] | ([OPTION OPTION_VALUE]...)
+Usage: source btsync-makeconfig.sh [-h|--help] | [OPTION OPTION_VALUE] ...
     -h
         Print the short version of this message and exit.
     --help
