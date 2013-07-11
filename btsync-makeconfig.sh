@@ -36,11 +36,30 @@ for arg in $@; do
 			password=$arg;;
 	esac
 	case $arg in -h|--help)
-cat<<EOF
-Usage: source btsync-makeconfig.sh [-h|--help] | ([OPTION OPTION_VALUE]...)
-    -h, --help
-        Print this message and exit.
+		cat<<EOF
+Usage: source btsync-makeconfig.sh [-h|--help] | [OPTION OPTION_VALUE] ...
+    -h
+        Print the short version of this message and exit.
+    --help
+        Print the long version of this message and exit.
+    (If both -h and --help appear, the first takes precedence.)
 
+Common options:
+    --device-name, --hostname
+        Name to display to other clients
+    --login
+        WebGUI login name
+    --pass, --password
+        WebGUI password (WILL BE SAVED IN CLEARTEXT!)
+    --webport
+        WebGUI port
+
+EOF
+			# Set exit status to nonzero
+			/bin/false
+			;;&
+		--help)
+		cat<<EOF
 OPTIONS
   These options are accepted, with defaults in parentheses. If an option
   appears more than once, the last occurrence overwrites all previous
@@ -86,10 +105,14 @@ OPTIONS
         The password to use for WebGUI. You can disable authentication
         in WebGUI by manually commenting out the "login" and "password"
         rows.
+          WARNING: THE PASSWORD WILL BE PRESERVED IN CLEARTEXT IN THE
+          GENERATED CONFIG FILE.
 
 EOF
-		exit 0
-	esac
+			# Set exit status to nonzero
+			/bin/false
+		;;
+	esac || exit 0 # Exit if any of the case blocks were executed
 	previous=$arg
 done
 
