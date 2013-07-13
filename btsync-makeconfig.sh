@@ -143,6 +143,6 @@ btsync --dump-sample-config \
 	| sed 's#"use_upnp" *: *[^,]*#"use_upnp" : '$upnp'#g' \
 	| sed 's#"download_limit" *: *[^,]*#"download_limit" : '$downlimit'#g' \
 	| sed 's#"upload_limit" *: *[^,]*#"upload_limit" : '$uplimit'#g' \
-	| sed 's#"listen" *: *[^,]*#"listen" : '$weblisten'#g' \
+	| sed 's#"listen" *: *[^,]*#"listen" : "'$weblisten'"#g' \
 	| sed 's#"login" *: *"[^"]*"#"login" : "'$login'"#g' \
 	| sed 's#"password" *: *"[^"]*"#"password" : "'$password'"#g'
