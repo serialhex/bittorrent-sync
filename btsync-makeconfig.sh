@@ -130,6 +130,14 @@ weblisten=0.0.0.0:${webport:-8888}
 login=${login:-$USER}
 password=${password:-password}
 
+
+##############################
+# COMMENT HEADER
+##############################
+# Include the documentation comment from btsync.conf.doc
+
+cat /usr/share/bittorrent-sync/btsync.conf.doc
+
 ##############################
 # REPLACEMENT
 ##############################

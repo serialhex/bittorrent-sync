@@ -18,13 +18,17 @@ source=("${pkgname}.install"
 	"btsync.service"
 	"btsync@.service"
 	"btsync-makeconfig.sh"
+	"btsync-wrapper.sh"
+	"btsync.conf.doc"
 	"terms-of-use.html::http://www.bittorrent.com/legal/terms-of-use"
 	"privacy-policy.html::http://www.bittorrent.com/legal/privacy"
 	)
 sha256sums=('64a32da4bb6c7b88b556010b024fd11f13641106ed936488f825bace00a26db2'
-	    '4725df55f29378a2fd1b194364c5927977c96b4ce622906d0d7cf80ae9493a9d'
-	    'c0b637fb8d3f8b8a35a81683b3540b3155da1ceba83783a60723c832d1d4162e'
-	    'bbafa03b7666842b610e3a1787a31cd3574de6d833fbe50502005fbec3d5bc2b'
+	    '29db7228c3363bafddc797b97209b3fe3e07497521dac2de11811db7d80d6c09'
+	    '74e43597fb523206908ed4ed28811e6939185f6ae89d21e1b48058ab2f3fed47'
+	    '640ffaf885f00de78d97925201be8ccde753a43714064336a8355bc89d7332db'
+	    '6fe65cffe191db2090251ba2e0ed496b922847891645fc0248adebb7b64be803'
+	    '9df5e6b5db86b5d58b5e24038fc70f3789c0a44a31dd5ecb29fb59f7d018a485'
 	    'SKIP'
 	    'SKIP'
 	    )
@@ -53,9 +57,11 @@ package() {
         install -D -m 644 privacy-policy.html "${pkgdir}/usr/share/licenses/${pkgname}/privacy-policy.html"
 
 	install -D -m 644 btsync.conf "${pkgdir}/etc/btsync.conf"
+	install -D -m 644 btsync.conf.doc "${pkgdir}/usr/share/${pkgname}/btsync.conf.doc"
 	install -D -m 755 btsync-makeconfig.sh "${pkgdir}/usr/share/${pkgname}/btsync-makeconfig.sh"
 
 	install -D -m 755 btsync "${pkgdir}/usr/bin/btsync"
+	install -D -m 755 btsync-wrapper.sh "${pkgdir}/usr/bin/btsync-wrapper"
 
 	install -D -m 644 btsync.service "${pkgdir}/usr/lib/systemd/system/btsync.service"
 	install -D -m 644 btsync@.service "${pkgdir}/usr/lib/systemd/system/btsync@.service"
