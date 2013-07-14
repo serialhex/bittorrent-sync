@@ -13,25 +13,14 @@ cat << EOF
   User-specific BTSync configuration
 
   Helps to set ownership to someone other than root for files that are copied
-  with btsync. Run the btsync-makeconfig script to generate a config file:
-
-  $ mkdir -p ~/.config/btsync
-  $ /usr/share/bittorrent-sync/btsync-makeconfig.sh > ~/.config/btsync/btsync.conf
-
-  This script accepts some optional parameters, see btsync-makeconfig.sh --help.
-  It leaves most things at default and attempts to guess suitable values for
-  login name and device name.
-
-  You may want to set these settings in particular (corresponding script option):
-
-  - webui.listen   (--webport)
-  - webui.login    (--login)
-  - webui.password (--pass|--password)
-
-  The systemd script (/usr/lib/systemd/system/btsync@.service) assumes the
-  following two settings:
-  - storage_path: $HOME/.config/btsync
-  - pid_file: $HOME/.config/btsync/sync.pid (default, leave this commented out)
+  with btsync. A default configuration file is automatically created at
+  ~/.config/btsync/btsync.conf if this file does not exist. You may want to
+  change the device_name, webui.login and webui.password settings. You can
+  either edit the config file directly or use the
+  /usr/share/bittorrent-sync/btsync-makeconfig.sh script, pass it the --help
+  flag to learn more about it. Please note that the PIDFile setting in
+  /usr/lib/systemd/system/btsync@.service assumes the default settings of
+  storage_path and pid_file.
 
   To start btsync, execute:
 

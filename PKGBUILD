@@ -23,7 +23,7 @@ source=("${pkgname}.install"
 	"terms-of-use.html::http://www.bittorrent.com/legal/terms-of-use"
 	"privacy-policy.html::http://www.bittorrent.com/legal/privacy"
 	)
-sha256sums=('64a32da4bb6c7b88b556010b024fd11f13641106ed936488f825bace00a26db2'
+sha256sums=('7ffd62c83bd6cb6d083972b811e662323515153d6c543006ec7c18762566dd3d'
 	    '29db7228c3363bafddc797b97209b3fe3e07497521dac2de11811db7d80d6c09'
 	    '74e43597fb523206908ed4ed28811e6939185f6ae89d21e1b48058ab2f3fed47'
 	    '640ffaf885f00de78d97925201be8ccde753a43714064336a8355bc89d7332db'
