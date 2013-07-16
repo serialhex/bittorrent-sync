@@ -7,8 +7,8 @@
 # PKGBUILD.bak.
 #
 # The script assumes that all checksums in the original PKGBUILD are strings of
-# 64 hexadecimal characters ([0-9a-f]), and that all such strings are checksums.
-# 'SKIP' checksums are not updated.
+# 32 or more hexadecimal characters ([0-9a-f], greedy), and that all such
+# strings are checksums. 'SKIP' checksums are not updated.
 #
 # Note that since this script works by replacing checksum strings with new
 # values, it only updates existing checksums. If a source file has no checksum
@@ -24,7 +24,7 @@ grep -vE "^[[:space:]]*(if|elif|else|fi)" PKGBUILD > PKGBUILD.geninteg
 
 # Compute the new checksums
 newsums=( )
-for l in $(makepkg -g -p PKGBUILD.geninteg | grep -oE "[0-9a-f]{64}"); do
+for l in $(makepkg -g -p PKGBUILD.geninteg | grep -oE "[0-9a-f]{32,}"); do
 	newsums+=("$l")
 done
 
@@ -32,7 +32,7 @@ rm PKGBUILD.geninteg
 
 # Find the old checksums
 oldsums=( )
-for l in $(grep -oE "[0-9a-f]{64}|SKIP" PKGBUILD); do
+for l in $(grep -oE "[0-9a-f]{32,}|SKIP" PKGBUILD); do
 	oldsums+=("$l")
 done
 
