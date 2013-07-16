@@ -37,6 +37,7 @@ for l in $(grep -oE "[0-9a-f]{32,}|SKIP" PKGBUILD); do
 done
 
 # Update the checksums in PKGBUILD
+echo "Updating checksums..."
 SCRIPT_NAME=$0.sed
 for i in ${!oldsums[@]}; do
 	if [ "${oldsums[i]}" == 'SKIP' ]; then
@@ -49,4 +50,5 @@ done
 
 sed -i.bak -f $SCRIPT_NAME PKGBUILD && rm $SCRIPT_NAME
 
+echo "Verifying correctness..."
 makepkg --verifysource
