@@ -13,6 +13,8 @@ for l in $(makepkg -g -p PKGBUILD.geninteg | grep -oE "[0-9a-f]{64}"); do
 	newsums+=("$l")
 done
 
+rm PKGBUILD.geninteg
+
 oldsums=( )
 for l in $(grep -oE "[0-9a-f]{64}|SKIP" PKGBUILD); do
 	oldsums+=("$l")
