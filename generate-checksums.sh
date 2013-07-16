@@ -6,14 +6,6 @@ if [[ $0 == '/bin/bash' ]]; then
 	return 1
 fi
 
-# Back up PKGBUILD
-if cp PKGBUILD PKGBUILD.bak; then
-	echo "PKGBUILD copied to PKGBUILD.bak"
-else
-	echo "Failed to backup PKGBUILD, exiting"
-	exit 1
-fi
-
 grep -vE "^[[:space:]]*(if|elif|else|fi)" PKGBUILD > PKGBUILD.geninteg
 
 newsums=( )
@@ -26,11 +18,14 @@ for l in $(grep -oE "[0-9a-f]{64}|SKIP" PKGBUILD); do
 	oldsums+=("$l")
 done
 
+SCRIPT_NAME=$0.sed
 for i in ${!oldsums[@]}; do
 	if [ "${oldsums[i]}" == 'SKIP' ]; then
 		echo 'SKIP > SKIP'
 	else
 		echo "${oldsums[i]} > ${newsums[i]}"
-		sed "s/${oldsums[i]}/${newsums[i]}/" PKGBUILD > NEW_PKGBUILD && mv NEW_PKGBUILD PKGBUILD
+		echo "s/${oldsums[i]}/${newsums[i]}/" >> $SCRIPT_NAME
 	fi
 done
+
+sed -i.bak -f $SCRIPT_NAME PKGBUILD && rm $SCRIPT_NAME
