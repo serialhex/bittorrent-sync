@@ -48,3 +48,5 @@ for i in ${!oldsums[@]}; do
 done
 
 sed -i.bak -f $SCRIPT_NAME PKGBUILD && rm $SCRIPT_NAME
+
+makepkg --verifysource
