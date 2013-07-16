@@ -1,5 +1,11 @@
 #!/bin/bash
 
+if [[ $0 == '/bin/bash' ]]; then
+	echo "It looks like you're sourcing this script."
+	echo "Please execute it directly instead, lest it clutter your shell with variables."
+	return 1
+fi
+
 # Back up PKGBUILD
 if cp PKGBUILD PKGBUILD.bak; then
 	echo "PKGBUILD copied to PKGBUILD.bak"
