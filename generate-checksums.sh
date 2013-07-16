@@ -1,5 +1,13 @@
 #!/bin/bash
 
+# Back up PKGBUILD
+if cp PKGBUILD PKGBUILD.bak; then
+	echo "PKGBUILD copied to PKGBUILD.bak"
+else
+	echo "Failed to backup PKGBUILD, exiting"
+	exit 1
+fi
+
 grep -vE "^[[:space:]]*(if|elif|else|fi)" PKGBUILD > PKGBUILD.geninteg
 
 newsums=( )
@@ -11,8 +19,6 @@ oldsums=( )
 for l in $(grep -oE "[0-9a-f]{64}|SKIP" PKGBUILD); do
 	oldsums+=("$l")
 done
-
-cp PKGBUILD PKGBUILD.bak
 
 for i in ${!oldsums[@]}; do
 	if [ "${oldsums[i]}" == 'SKIP' ]; then
