@@ -7,7 +7,7 @@
 
 pkgname=bittorrent-sync
 pkgver=1.1.70
-pkgrel=1
+pkgrel=2
 pkgdesc="BitTorrent Sync - automatically sync files via secure, distributed technology"
 arch=('i686' 'x86_64' 'arm' 'armv6h' 'armv7h')
 url="http://labs.bittorrent.com/experiments/sync.html"
