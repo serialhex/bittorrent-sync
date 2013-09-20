@@ -46,6 +46,7 @@ fi
 
 build() {
 	cd "${srcdir}"
+	PATH="${srcdir}:${PATH}"
 	./btsync-makeconfig.sh --storage-path /var/lib/btsync --login admin --device-name $HOSTNAME > btsync.conf
 }
 
